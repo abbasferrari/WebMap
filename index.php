@@ -1,13 +1,13 @@
 <html>
 <head>
   <title>A Leaflet map!</title>
-  <link rel="stylesheet" href="./leaflet.css"/>
-  <link rel="stylesheet" href="./MarkerCluster.css">
+  <link rel="stylesheet" href="leaflet.css"/>
+  <link rel="stylesheet" href="MarkerCluster.css">
   
-  <script src="./leaflet.js"></script>
+  <script src="leaflet.js"></script>
    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script> 
-   <script src="./MarkerCluster.js"></script>
-   <script src="./leaflet-heat.js"></script>
+   <script src="MarkerCluster.js"></script>
+   <script src="leaflet-heat.js"></script>
 
   <style>
     #map{ height: 100% }
