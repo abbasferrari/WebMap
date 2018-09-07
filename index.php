@@ -15,7 +15,7 @@
 </head>
 <body>
 
-  <div id="map">
+  <div id="map"></div>
 
   <script>
 
@@ -53,7 +53,6 @@
   });
  
   $.getJSON("rodents.geoson",function(data){
-    
     var ratIcon = L.icon({
       iconUrl: 'http://andywoodruff.com/maptime-leaflet/rat.png',
       iconSize: [60,50]
@@ -64,12 +63,10 @@
         marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
         return marker;
       }
-
     });
     var clusters = L.markerClusterGroup();
     clusters.addLayer(rodents);
     map.addLayer(clusters);
-
   });
 	
 /*
@@ -150,13 +147,5 @@ $.getJSON("rodents.geoson",function(data){
 */
 
   </script>
-  
-  
-  </div>
-  
-  <div id = "MenuBar">
-  
-  
-  </div>
 </body>
 </html>
