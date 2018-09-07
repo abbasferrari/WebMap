@@ -1,0 +1,10 @@
+<html>
+<head>
+  <title> HEAT MAP :P </title>
+  <link rel = "stylesheet" href = "./Leaflet-1.0.3/leaflet.css"/>
+  <script src="./Leaflet-1.0.3/leaflet.js"/></script>
+  <style>
+  	#mpa
+  </style>
+
+<head>
