@@ -1,9 +1,10 @@
+
 <html>
 <head>
   <title>A Leaflet map!</title>
   <link rel="stylesheet" href="leaflet.css"/>
-  <!--link rel="stylesheet" href="MarkerCluster.css" /-->
-  <link rel="stylesheet" href="MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="MarkerCluster1.css" />
+  <!--link rel="stylesheet" href="MarkerCluster.Default.css" /-->
     <!--script src="./leaflet.js"></script-->
   <script src="leaflet.js"></script>
   <script src="leaflet.markercluster.js"></script>
@@ -19,15 +20,18 @@
   <script>
  
   // initialize the map
-  var map = L.map('map').setView([45, -71.08], 13);
+  var map = L.map('map').setView([42.35, -71.08], 13);
  
   // load a tile layer
   L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
     {
       attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
-      maxZoom: 17,
-      minZoom: 13
+      maxZoom: 20,
+      minZoom: 12
     }).addTo(map);
+	
+	
+
     
   $.getJSON("https://maptimeboston.github.io/leaflet-intro/neighborhoods.geojson",function(hoodData){
     L.geoJson( hoodData, {
@@ -40,7 +44,7 @@
         else if ( density > 10 ) fillColor = "#c2e699";
         else if ( density > 0 ) fillColor = "#ffffcc";
         else fillColor = "#f7f7f7";  // no data
-        return { color: "#999", weight: 1, fillColor: fillColor, fillOpacity: .6 };
+        return { color: "#995", weight: 1, fillColor: fillColor, fillOpacity: .3 };
       },
       onEachFeature: function( feature, layer ){
         layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.density + " rats per square mile" )
@@ -48,14 +52,12 @@
     }).addTo(map);
   });
  
-  $.getJSON("rodents.geoson",function(data){
-    var ratIcon = L.icon({
-      iconUrl: 'http://andywoodruff.com/maptime-leaflet/rat.png',
-      iconSize: [60,50]
-    });
+ 
+ 	
+	 $.getJSON("rodents.geoson",function(data){
     var rodents = L.geoJson(data,{
       pointToLayer: function(feature,latlng){
-        var marker = L.marker(latlng,{icon: ratIcon});
+        var marker = L.marker(latlng);
         marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
         return marker;
       }
@@ -64,7 +66,6 @@
     clusters.addLayer(rodents);
     map.addLayer(clusters);
   });
- 
   </script>
 </body>
 </html>

@@ -1,11 +1,10 @@
+
 <html>
 <head>
   <title>A Leaflet map!</title>
-  <link rel="stylesheet" href="leaflet.css"/>
-  <!--link rel="stylesheet" href="MarkerCluster.css" /-->
-  <link rel="stylesheet" href="MarkerCluster.Default.css" />
-    <!--script src="./leaflet.js"></script-->
-  <script src="leaflet.js"></script>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+  <link rel="stylesheet" href="MarkerCluster.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="leaflet.markercluster.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <style>
@@ -19,14 +18,14 @@
   <script>
  
   // initialize the map
-  var map = L.map('map').setView([45, -71.08], 13);
+  var map = L.map('map').setView([42.35, -71.08], 13);
  
   // load a tile layer
   L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
     {
       attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
       maxZoom: 17,
-      minZoom: 13
+      minZoom: 9
     }).addTo(map);
     
   $.getJSON("https://maptimeboston.github.io/leaflet-intro/neighborhoods.geojson",function(hoodData){
