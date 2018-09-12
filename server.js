@@ -17,11 +17,11 @@ var path = require("path");
 
 var port = process.env.PORT || 8080;
 
-app.use(express.static(path.join(__dirname,"")));
+app.use(express.static(path.join(__dirname,"/")));
 
 app.all('/',function(req,res){
     console.log(__dirname);
-    res.render("check.html");
+    res.sendFile("/check.html");
 });
 
 app.post('/updateMap', function(req, res) {
