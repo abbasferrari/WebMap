@@ -33,7 +33,7 @@
 	
 
     
-  $.getJSON("https://maptimeboston.github.io/leaflet-intro/neighborhoods.geojson",function(hoodData){
+  $.getJSON("neighborhood.geojson",function(hoodData){
     var myLayer = L.geoJson( hoodData, {
       style: function(feature){
         var fillColor,
