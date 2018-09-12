@@ -53,9 +53,8 @@
     // Add a listener to watch for change on input
     L.DomEvent.addListener(input, 'change', function () {
         // Input changed, change property value
-        feature.properties.density = input.value;
-	myLayer = myLayer.toGeoJSON();
-	    console.log(myLayer);
+        feature.properties.density = input.value;	
+	console.log(myLayer);
     });
 
     layer.bindPopup(input);
