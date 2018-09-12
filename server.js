@@ -31,3 +31,7 @@ app.post('/updateMap', function(req, res) {
       console.log('Saved!');
     });
 });
+
+app.listen(port, function() {
+    console.log('Our app is running on ' + port);
+});
