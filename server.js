@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname,"")));
 
 app.all('/',function(req,res){
     console.log(__dirname);
-    res.render(path.join(__dirname ,"/check.html"));
+    res.render("check.html");
 });
 
 app.post('/updateMap', function(req, res) {
