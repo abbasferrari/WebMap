@@ -20,6 +20,7 @@ var port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname,"")));
 
 app.all('/',function(req,res){
+    console.log(__dirname);
     res.render(path.join(__dirname ,"/check.html"));
 });
 
