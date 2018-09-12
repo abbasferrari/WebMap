@@ -29,41 +29,46 @@
       maxZoom: 20,
       minZoom: 12
     }).addTo(map);
-	
-  setInterval(updateMap,1000);	  
+	  
+  $.getJSON("neighborhood.geojson",function(hoodData){
+    var myLayer = L.geoJson( hoodData, {
+      style: function(feature){
+	var fillColor,
+	    density = feature.properties.density;
+	if ( density > 80 ) fillColor = "#006837";
+	else if ( density > 40 ) fillColor = "#31a354";
+	else if ( density > 20 ) fillColor = "#78c679";
+	else if ( density > 10 ) fillColor = "#c2e699";
+	else if ( density > 0 ) fillColor = "#ffffcc";
+	else fillColor = "#f7f7f7";  // no data
+	return { color: "#995", weight: 1, fillColor: fillColor, fillOpacity: .3 };
+      },
+      onEachFeature: function( feature, layer ){
+	  var input = L.DomUtil.create('input', 'my-input');
+    // Set a feature property as value
+    input.value = feature.properties.density;
+    // Add a listener to watch for change on input
+    L.DomEvent.addListener(input, 'change', function () {
+	// Input changed, change property value
+	feature.properties.density = input.value;	
+	console.log(hoodData);
+    	var fillColor,
+	    density = feature.properties.density;
+	if ( density > 80 ) fillColor = "#006837";
+	else if ( density > 40 ) fillColor = "#31a354";
+	else if ( density > 20 ) fillColor = "#78c679";
+	else if ( density > 10 ) fillColor = "#c2e699";
+	else if ( density > 0 ) fillColor = "#ffffcc";
+	else fillColor = "#f7f7f7";  // no data
+	hoodData.style = "{ color: "#995", weight: 1, fillColor: fillColor, fillOpacity: .3 }";
+    });
+    layer.bindPopup(input);
 
-  function updateMap(){  
-	  $.getJSON("neighborhood.geojson",function(hoodData){
-	    var myLayer = L.geoJson( hoodData, {
-	      style: function(feature){
-		var fillColor,
-		    density = feature.properties.density;
-		if ( density > 80 ) fillColor = "#006837";
-		else if ( density > 40 ) fillColor = "#31a354";
-		else if ( density > 20 ) fillColor = "#78c679";
-		else if ( density > 10 ) fillColor = "#c2e699";
-		else if ( density > 0 ) fillColor = "#ffffcc";
-		else fillColor = "#f7f7f7";  // no data
-		return { color: "#995", weight: 1, fillColor: fillColor, fillOpacity: .3 };
-	      },
-	      onEachFeature: function( feature, layer ){
-		  var input = L.DomUtil.create('input', 'my-input');
-	    // Set a feature property as value
-	    input.value = feature.properties.density;
-	    // Add a listener to watch for change on input
-	    L.DomEvent.addListener(input, 'change', function () {
-		// Input changed, change property value
-		feature.properties.density = input.value;	
-		console.log(hoodData);
-	    });
-
-	    layer.bindPopup(input);
-
-		      //layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.density + " rats per square mile" )
-	      }
-	    }).addTo(map);
-	  });
-  }
+	      //layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.density + " rats per square mile" )
+      }
+    }).addTo(map);
+  });
+  
  
  
  	
