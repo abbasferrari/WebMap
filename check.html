@@ -47,7 +47,16 @@
         return { color: "#995", weight: 1, fillColor: fillColor, fillOpacity: .3 };
       },
       onEachFeature: function( feature, layer ){
-        layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.density + " rats per square mile" )
+     var input = L.DomUtil.create('input', 'my-input');
+    
+     input.value = feature.properties.Density;
+     L.DomEvent.addListener(input, 'change', function () {
+        feature.properties.Name = input.value;
+     });
+    // Bind popup to layer with input
+    layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>+input+" rats per square mile" );	
+	      
+	      //layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.density + " rats per square mile" )
       }
     }).addTo(map);
   });
