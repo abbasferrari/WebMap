@@ -34,7 +34,7 @@
 
     
   $.getJSON("https://maptimeboston.github.io/leaflet-intro/neighborhoods.geojson",function(hoodData){
-    L.geoJson( hoodData, {
+    var myLayer = L.geoJson( hoodData, {
       style: function(feature){
         var fillColor,
             density = feature.properties.density;
@@ -54,6 +54,7 @@
     L.DomEvent.addListener(input, 'change', function () {
         // Input changed, change property value
         feature.properties.density = input.value;
+	myLayer = myLayer.toGeoJSON();
     });
 
     layer.bindPopup(input);
