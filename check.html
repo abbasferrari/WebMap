@@ -20,6 +20,7 @@
   <script>
  
   // initialize the map
+  
   var map = L.map('map').setView([42.35, -71.08], 13);
  
   // load a tile layer
@@ -51,10 +52,24 @@
     L.DomEvent.addListener(input, 'change', function () {
 	// Input changed, change property value
 	feature.properties.density = input.value;
-	console.log(hoodData);
-	debugger;
+	//console.log(hoodData);
 	var new_json = JSON.stringify(hoodData);
-	  
+	$.ajax({
+	    url: "https://webmap-abbas.herokuapp.com/updateMap",
+	    type: "POST",
+	    dataType: "text",   
+	    crossDomain: true,
+	    data: JSON.stringify({
+		"NewJSON":new_json
+	    }),
+	    contentType: 'application/json',
+	    success:function(data){
+                console.log(data);
+	    },
+	    error:function(err){
+                console.log(err);
+            }
+	});
     });
     layer.bindPopup(input);
 
