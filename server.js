@@ -17,7 +17,7 @@ var path = require("path");
 
 var port = process.env.PORT || 8080;
 
-app.use(express.static(path.join(__dirname,"/..")));
+app.use(express.static(path.join(__dirname,"")));
 
 app.all('/',function(req,res){
     res.render(path.join(__dirname ,"/check.html"));
@@ -29,4 +29,4 @@ app.post('/updateMap', function(req, res) {
       if (err) throw err;
       console.log('Saved!');
     });
-}
+});
