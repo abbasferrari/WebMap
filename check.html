@@ -56,7 +56,7 @@
         feature.properties.density = input.value;
     });
 
-    layer.bindPopup(input);
+    layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>"+input);
 	      
 	      //layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.density + " rats per square mile" )
       }
