@@ -47,14 +47,16 @@
         return { color: "#995", weight: 1, fillColor: fillColor, fillOpacity: .3 };
       },
       onEachFeature: function( feature, layer ){
-     var input = L.DomUtil.create('input', 'my-input');
-    
-     input.value = feature.properties.Density;
-     L.DomEvent.addListener(input, 'change', function () {
-        feature.properties.Name = input.value;
-     });
-    // Bind popup to layer with input
-    layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>+input+" rats per square mile" );	
+          var input = L.DomUtil.create('input', 'my-input');
+    // Set a feature property as value
+    input.value = feature.properties.density;
+    // Add a listener to watch for change on input
+    L.DomEvent.addListener(input, 'change', function () {
+        // Input changed, change property value
+        feature.properties.density = input.value;
+    });
+
+    layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>"+input+" rats per square mile" );
 	      
 	      //layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.density + " rats per square mile" )
       }
