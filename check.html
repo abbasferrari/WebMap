@@ -50,8 +50,11 @@
     // Add a listener to watch for change on input
     L.DomEvent.addListener(input, 'change', function () {
 	// Input changed, change property value
-	feature.properties.density = input.value;	
-	
+	feature.properties.density = input.value;
+	console.log(hoodData);
+	debugger;
+	var new_json = JSON.stringify(hoodData);
+	  
     });
     layer.bindPopup(input);
 
